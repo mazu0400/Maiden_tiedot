@@ -19,6 +19,9 @@ const App = () => {
   const countriesToShow = countries.filter((country) =>
     country.name.common.toLowerCase().includes(filter.toLowerCase().trim())
   );
+  const handleShowCountry = (countryName) => {
+    setFilter(countryName);
+  };
 
   return (
     <div
@@ -50,7 +53,12 @@ const App = () => {
         ) : countriesToShow.length > 1 ? (
           <ul>
             {countriesToShow.map((c) => (
-              <li key={c.cca3}>{c.name.common}</li>
+              <li key={c.cca3}>
+                {c.name.common}{" "}
+                <button onClick={() => handleShowCountry(c.name.common)}>
+                  show
+                </button>
+              </li>
             ))}
           </ul>
         ) : countriesToShow.length === 1 ? (
